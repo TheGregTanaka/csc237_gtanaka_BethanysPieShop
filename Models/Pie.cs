@@ -19,5 +19,6 @@ namespace csc237_gtanaka_Bethanys.Models
 		public bool InStock { get; set; }
 		public int CategoryID { get; set; }
 		public Category Category { get; set; }
+		public string Notes { get; set; }
 	}
 }
