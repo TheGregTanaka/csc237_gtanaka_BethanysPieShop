@@ -19,13 +19,28 @@ namespace csc237_gtanaka_Bethanys.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public IActionResult List()
+        public ViewResult List(string category)
         {
-            PiesListViewModel piesListViewModel = new PiesListViewModel();
-            piesListViewModel.Pies = _pieRepository.AllPies;
+            IEnumerable<Pie> pies;
+            string currentCategory;
 
-            piesListViewModel.CurrentCategory = "Cheese cakes";
-            return View(piesListViewModel);
+            if (string.IsNullOrEmpty(category))
+            {
+                pies = _pieRepository.AllPies.OrderBy(p => p.PieID);
+                currentCategory = "All pies";
+            }
+            else
+            {
+                pies = _pieRepository.AllPies.Where(p => p.Category.CategoryName == category)
+                    .OrderBy(p => p.PieID);
+                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            }
+
+            return View(new PiesListViewModel
+            {
+                Pies = pies,
+                CurrentCategory = currentCategory
+            });
         }
 
         public IActionResult Details(int id)

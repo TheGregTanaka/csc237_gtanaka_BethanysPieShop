@@ -17,6 +17,8 @@ namespace csc237_gtanaka_Bethanys.Models
 
 		public DbSet<Category> Categories { get; set; }
 
+		public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
