@@ -27,5 +27,15 @@ namespace csc237_gtanaka_Bethanys.Controllers
             piesListViewModel.CurrentCategory = "Cheese cakes";
             return View(piesListViewModel);
         }
+
+        public IActionResult Details(int id)
+        {
+            var pie = _pieRepository.GetPieByID(id);
+            if (pie == null)
+            {
+                return NotFound();
+            }
+            return View(pie);
+        }
     }
 }
