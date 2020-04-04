@@ -1,4 +1,5 @@
 ﻿using csc237_gtanaka_Bethanys.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace csc237_gtanaka_Bethanys.Controllers
 {
+	[Authorize]
 	public class OrderController : Controller
 	{
 		private readonly IOrderRepository _orderRepository;
